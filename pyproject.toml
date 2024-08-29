@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "etl-az"
+version = "0.1.0"
+description = ""
+authors = ["Brisa <brisamnascimento@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.*"
+pydantic-settings = "^2.4.0"
+pandas = "^2.2.2"
+requests = "^2.32.3"
+azure-storage-blob = "^12.22.0"
+pyarrow = "^17.0.0"
+numpy = "^2.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.13.0"
+ruff = "^0.5.6"
+httpx = "^0.27.0"
+ipykernel = "^6.29.5"
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.taskipy.tasks]
+lint = 'ruff check . && ruff check . --diff'
+format = 'ruff check . --fix && ruff format .'
+run = 'poetry run python main.py'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
